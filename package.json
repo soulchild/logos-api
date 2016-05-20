@@ -5,9 +5,10 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "install": "npm run update-logos",
-    "update-logos": "bin/update-logos"
   },
   "author": "Tobi Kremer <tobias.kremer@gmail.com>",
-  "license": "ISC"
+  "license": "ISC",
+  "engines": {
+    "node": "5.8.0"
+  }
 }

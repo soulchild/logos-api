@@ -1,0 +1,5 @@
+[submodule "logos/svgporn"]
+	path = logos/svgporn
+  url = https://github.com/gilbarbara/logos
+  branch = app
+
