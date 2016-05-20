@@ -1,0 +1,34 @@
+# Node.js API for accessing the SVGPorn logo collection
+
+This is a very simple Node.js application providing a JSON API for searching and retrieving logos from the [SVGPorn](http://svgporn.com/) logo collection.
+
+## Installation
+
+```bash
+npm install
+npm start
+```
+
+## Examples
+
+### Search
+
+- http://localhost:8000/?query=gitlab
+- http://localhost:8000/?query=soundcloud
+
+### Get SVG logo by id
+
+- http://localhost:8000/gitlab
+- http://localhost:8000/soundcloud
+
+## Updating the logos
+
+I deliberately didn't use the readily available [instant-logos](https://github.com/kogg/instant-logos) module, because the dependency chain was insane. Plus, the [napa](https://www.npmjs.com/package/napa)-based downloading of 3rd-party logos didn't work for me out-of-the-box. I took the approach of least resistance and currently just clone gilbarbara's Github repository during npm installation. To update the downloaded logos, just run `npm run update-logos`.
+
+## Thank you
+
+Many thanks to [gilbarbara](https://github.com/gilbarbara) for compiling/creating the logos!
+
+## Authors
+
+- Tobias Kremer

@@ -1,0 +1,12 @@
+#!/usr/bin/env bash
+
+SVGPORN=logos/svgporn
+
+if [ ! -d "$SVGPORN" ]; then
+  mkdir -p $SVGPORN && \
+    git clone https://github.com/gilbarbara/logos $SVGPORN && \
+    cd $SVGPORN && \
+    git checkout app
+else
+  cd $SVGPORN && git pull
+fi

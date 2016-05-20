@@ -1,0 +1,13 @@
+{
+  "name": "logos-api",
+  "version": "0.0.1",
+  "description": "Logos API",
+  "main": "server.js",
+  "scripts": {
+    "start": "node server.js",
+    "install": "npm run update-logos",
+    "update-logos": "bin/update-logos"
+  },
+  "author": "Tobi Kremer <tobias.kremer@gmail.com>",
+  "license": "ISC"
+}
