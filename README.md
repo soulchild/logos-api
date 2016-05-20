@@ -2,6 +2,10 @@
 
 This is a very simple Node.js application providing a JSON API for searching and retrieving logos from the [SVGPorn](http://svgporn.com/) logo collection.
 
+## Live demo
+
+Check out a running installation on [Heroku](http://logos-api.herokuapp.com/).
+
 ## Installation
 
 ```bash
