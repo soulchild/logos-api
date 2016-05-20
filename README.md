@@ -4,7 +4,11 @@ This is a very simple Node.js application providing a JSON API for searching and
 
 ## Live demo
 
-Check out a running installation on [Heroku](http://logos-api.herokuapp.com/).
+Check out a running installation on Heroku:
+
+- [Search for Google](http://logos-api.herokuapp.com/?query=google)
+- [Get Google logo](http://logos-api.herokuapp.com/google)
+- [Get Soundcloud logo](http://logos-api.herokuapp.com/soundcloud)
 
 ## Installation
 
