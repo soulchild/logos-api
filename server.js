@@ -26,12 +26,6 @@ function getLogo(key, value) {
   });
 }
 
-/* Global route */
-app.get('/*', (req,res,next) => {
-  res.setHeader('Content-Type', 'application/json');
-  next();
-});
-
 /* Search logos */
 app.get('/?', (req, res) => {
   let logos = searchLogos(req.query.query);
