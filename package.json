@@ -5,6 +5,7 @@
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
+    "start-dev": "nodemon server.js",
     "install": "npm run update-logos",
     "update-logos": "./bin/update-logos"
   },
@@ -14,6 +15,10 @@
     "node": "5.8.0"
   },
   "dependencies": {
-    "express": "^4.13.4"
+    "express": "^4.13.4",
+    "lodash": "^4.13.1"
+  },
+  "devDependencies": {
+    "nodemon": "^1.9.2"
   }
 }

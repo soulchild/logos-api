@@ -3,25 +3,44 @@
 const express = require('express');
 const app = express();
 const path = require('path');
+const _ = require('lodash');
 
 const PORT = process.env.PORT || 8000;
+const LOGOS_PATH_ABS = path.join(process.cwd(), 'logos');
 
-const PATH_SVGPORN = path.join(process.cwd(), 'logos', 'svgporn');
-const PATH_LOGOS = path.join(PATH_SVGPORN, 'logos');
+/**
+ * Retrieves SVGPorn logos and augments them with proper
+ * path and source properties.
+ */
+const svgPornLogos = _.memoize(function() {
+  const logos = require(path.join(LOGOS_PATH_ABS, 'svgporn', 'app',
+    '/logos.json')).items;
+  return logos.map(logo => {
+    return _(logo)
+      .pick(logo, ['key', 'name', 'shortname', 'url',
+        'tags', 'categories', 'updated'
+      ])
+      .assign({
+        path: path.join('svgporn', 'logos', logo.files[0]),
+        source: 'svgporn'
+      })
+      .value();
+  });
+});
 
-const svgPornLogos = require(path.join(PATH_SVGPORN, 'app', '/logos.json')).items;
+const logos = _.union(svgPornLogos());
 
 function searchLogos(query, key) {
-  if (!query) return [];
+  if (!query) return logos;
   key = key || 'shortname';
   let queryClean = query.replace(/[.\-() ]/gi, '').toLowerCase();
-  return svgPornLogos.filter(logo => {
+  return logos.filter(logo => {
     return logo[key].indexOf(queryClean) > -1;
   });
 }
 
 function getLogo(key, value) {
-  return svgPornLogos.find(logo => {
+  return logos.find(logo => {
     return logo[key] === value;
   });
 }
@@ -36,8 +55,7 @@ app.get('/?', (req, res) => {
 app.get('/:logo', (req, res, next) => {
   const logo = getLogo('shortname', req.params.logo);
   if (logo) {
-    const logoFilename = logo.files[0];
-    const logoFile = path.join(PATH_LOGOS, logoFilename);
+    const logoFile = path.join(LOGOS_PATH_ABS, logo.path);
     res.sendFile(logoFile, {
       headers: {
         'Content-Type': 'image/svg+xml'
@@ -56,7 +74,7 @@ app.all('*', (req, res) => {
 });
 
 /* Errors */
-app.use(function(err, req, res, next) {
+app.use(function(err, req, res) {
   console.error(err.stack);
   res.status(err.status || 500).json(err.message);
 });
