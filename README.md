@@ -1,6 +1,8 @@
-# Node.js API for accessing the SVGPorn logo collection
+# Logos API
 
-This is a very simple Node.js application providing a JSON API for searching and retrieving logos from the [SVGPorn](http://svgporn.com/) logo collection.
+> Simple Node.js application providing a RESTful API for searching and retrieving
+> logos from various user-contributed sources (currently [SVGPorn](http://svgporn.com/)
+> is the only source implemented).
 
 ## Live demo
 
@@ -39,4 +41,4 @@ Many thanks to [gilbarbara](https://github.com/gilbarbara) for compiling/creatin
 
 ## Authors
 
-- Tobias Kremer
+- [Tobias Kremer](https://github.com/soulchild)
