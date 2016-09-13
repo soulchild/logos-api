@@ -1,20 +1,25 @@
-FROM node:6.2
+FROM node:6
 
-ENV HOME=/home/logos
+ENV PORT=8000
+ENV USER=logos
+ENV HOME=/home/${USER}
 ENV APPDIR=${HOME}
 
-RUN useradd --user-group --create-home --shell /bin/false logos
+RUN useradd --user-group --create-home --shell /bin/false ${USER}
 
 WORKDIR $APPDIR
 
 COPY package.json ${APPDIR}
-RUN npm install --production && \
+COPY bin/update-logos ${APPDIR}/bin/update-logos
+
+# --unsafe-perm to allow postinstall script to run as root (instead of nobody)
+RUN npm install --unsafe-perm --production && \
   npm cache clean
 
 COPY . ${APPDIR}
 
-EXPOSE 8000
+EXPOSE ${PORT}
 
-USER logos
+USER ${USER}
 
 CMD [ "npm", "start" ]
