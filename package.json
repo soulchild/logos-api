@@ -1,11 +1,11 @@
 {
   "name": "logos-api",
-  "version": "0.0.4",
-  "description": "Logos API",
+  "version": "0.0.5",
+  "description": "RESTful API for searching and retrieving logos from various user-contributed sources",
   "main": "server.js",
   "scripts": {
     "start": "node server.js",
-    "start-dev": "nodemon server.js",
+    "dev": "nodemon server.js",
     "postinstall": "npm run update-logos",
     "update-logos": "./bin/update-logos"
   },

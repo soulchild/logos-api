@@ -1,12 +1,12 @@
 #!/usr/bin/env bash
 
-SVGPORN=logos/svgporn
+GILBARBARA=logos/gilbarbara
 
-if [ ! -d "$SVGPORN" ]; then
-  mkdir -p $SVGPORN && \
-    git clone https://github.com/gilbarbara/logos $SVGPORN && \
-    cd $SVGPORN && \
+if [ ! -d "$GILBARBARA" ]; then
+  mkdir -p $GILBARBARA && \
+    git clone https://github.com/gilbarbara/logos $GILBARBARA && \
+    cd $GILBARBARA && \
     git checkout app
 else
-  cd $SVGPORN && git pull
+  cd $GILBARBARA && git pull
 fi

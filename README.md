@@ -1,16 +1,17 @@
 # Logos API
 
 > Simple Node.js application providing a RESTful API for searching and retrieving
-> logos from various user-contributed sources (currently [SVGPorn](http://svgporn.com/)
-> is the only source implemented).
+> logos from various user-contributed sources (currently the awesome
+> [Gilbarbara logo collection](https://github.com/gilbarbara/logos) is
+> the only source implemented).
 
 ## Live demo
 
 Check out a running installation on Heroku:
 
-- [Search for Google](http://logos-api.herokuapp.com/?query=google)
-- [Get Google logo](http://logos-api.herokuapp.com/google)
-- [Get Soundcloud logo](http://logos-api.herokuapp.com/soundcloud)
+- [Search for Google](http://logos-api.funkreich.de/?q=google)
+- [Get Github logo](http://logos-api.funkreich.de/github)
+- [Get Soundcloud logo](http://logos-api.funkreich.de/soundcloud)
 
 ## Installation
 
@@ -23,10 +24,10 @@ npm start
 
 ### Search
 
-- http://localhost:8000/?query=gitlab
-- http://localhost:8000/?query=soundcloud
+- http://localhost:8000/?q=gitlab
+- http://localhost:8000/?q=soundcloud
 
-### Get SVG logo by id
+### Get logo by id
 
 - http://localhost:8000/gitlab
 - http://localhost:8000/soundcloud

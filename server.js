@@ -5,57 +5,44 @@ const app = express();
 const path = require('path');
 const _ = require('lodash');
 
-const PORT = process.env.PORT || 8000;
-const LOGOS_PATH_ABS = path.join(process.cwd(), 'logos');
+const PORT = process.env.LOGOSAPI_PORT || 8000;
+const BASE_URL = process.env.LOGOSAPI_URL || 'http://localhost:' + PORT;
+const LOGOS_BASE_PATH = path.join(process.cwd(), 'logos');
 
-/**
- * Retrieves SVGPorn logos and augments them with proper
- * path and source properties.
- */
-const svgPornLogos = _.memoize(function() {
-  const logos = require(path.join(LOGOS_PATH_ABS, 'svgporn', 'app',
-    '/logos.json')).items;
-  return logos.map(logo => {
-    return _(logo)
-      .pick(logo, ['key', 'name', 'shortname', 'url',
-        'tags', 'categories', 'updated'
-      ])
-      .assign({
-        path: path.join('svgporn', 'logos', logo.files[0]),
-        source: 'svgporn'
-      })
-      .value();
-  });
-});
+/* Load logos from all sources */
+const gilbarbara = require('./lib/gilbarbara')(LOGOS_BASE_PATH);
+const logos = _.union(
+  gilbarbara()
+).map(logo => Object.assign(logo, {
+  // Augment every logo with full URL to image
+  logoURL: BASE_URL + '/' + logo.shortname
+}));
 
-const logos = _.union(svgPornLogos());
-
-function searchLogos(query, key) {
+/* Search all logos by attribute */
+function searchLogos(query, attribute) {
   if (!query) return logos;
-  key = key || 'shortname';
-  let queryClean = query.replace(/[.\-() ]/gi, '').toLowerCase();
+  attribute = attribute || 'shortname';
+  const queryClean = query.replace(/[.\-() ]/gi, '').toLowerCase();
   return logos.filter(logo => {
-    return logo[key].indexOf(queryClean) > -1;
+    return logo[attribute].indexOf(queryClean) > -1;
   });
 }
 
-function getLogo(key, value) {
-  return logos.find(logo => {
-    return logo[key] === value;
-  });
-}
+/* Find logo by attribute */
+const getLogo = (attribute, value) => logos
+  .find(logo => logo[attribute] === value);
 
 /* Search logos */
 app.get('/?', (req, res) => {
-  let logos = searchLogos(req.query.query);
+  const logos = searchLogos(req.query.q);
   res.json(logos);
 });
 
-/* Get logo */
+/* Serve logo image */
 app.get('/:logo', (req, res, next) => {
   const logo = getLogo('shortname', req.params.logo);
   if (logo) {
-    const logoFile = path.join(LOGOS_PATH_ABS, logo.path);
+    const logoFile = path.join(LOGOS_BASE_PATH, logo.path);
     res.sendFile(logoFile, {
       headers: {
         'Content-Type': 'image/svg+xml'
@@ -80,5 +67,5 @@ app.use(function(err, req, res) {
 });
 
 app.listen(PORT, () => {
-  console.log("Logos API listening on port %d.", PORT);
+  console.log("Logos API serving %d logos on port %d.", logos.length, PORT);
 });

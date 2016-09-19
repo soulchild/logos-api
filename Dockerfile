@@ -1,6 +1,6 @@
 FROM node:6
 
-ENV PORT=8000
+ENV LOGOSAPI_PORT=8000
 ENV USER=logos
 ENV HOME=/home/${USER}
 ENV APPDIR=${HOME}
@@ -18,7 +18,7 @@ RUN npm install --unsafe-perm --production && \
 
 COPY . ${APPDIR}
 
-EXPOSE ${PORT}
+EXPOSE ${LOGOSAPI_PORT}
 
 USER ${USER}
 
