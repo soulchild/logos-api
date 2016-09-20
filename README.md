@@ -1,9 +1,7 @@
 # Logos API
 
 > Simple Node.js application providing a RESTful API for searching and retrieving
-> logos from various user-contributed sources (currently the awesome
-> [Gilbarbara logo collection](https://github.com/gilbarbara/logos) is
-> the only source implemented).
+> logos from various user-contributed sources.
 
 ## Live demo
 
@@ -12,6 +10,11 @@ Check out a running installation on Heroku:
 - [Search for Google](http://logos-api.funkreich.de/?q=google)
 - [Get Github logo](http://logos-api.funkreich.de/github)
 - [Get Soundcloud logo](http://logos-api.funkreich.de/soundcloud)
+
+## Logo sources
+
+  * [Gilbarbara's SVG logos](https://github.com/gilbarbara/logos)
+  * [Dan Leech's Simple Icons](https://github.com/danleech/simple-icons)
 
 ## Installation
 
