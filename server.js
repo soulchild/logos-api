@@ -11,8 +11,10 @@ const LOGOS_BASE_PATH = path.join(process.cwd(), 'logos');
 
 /* Load logos from all sources */
 const gilbarbara = require('./lib/gilbarbara')(LOGOS_BASE_PATH);
+const simpleicons = require('./lib/simpleicons')(LOGOS_BASE_PATH);
 const logos = _.union(
-  gilbarbara()
+  gilbarbara(),
+  simpleicons()
 ).map(logo => Object.assign(logo, {
   // Augment every logo with full URL to image
   logoURL: BASE_URL + '/' + logo.shortname

@@ -1,6 +1,12 @@
 #!/usr/bin/env bash
 
-GILBARBARA=logos/gilbarbara
+# Jump to base dir, so it doesn't matter where this script is run from.
+SCRIPT_DIR=$( cd "$( dirname "${BASH_SOURCE[0]}" )" && pwd )
+BASE_DIR=${SCRIPT_DIR}/..
+
+LOGOSPATH=${BASE_DIR}/logos
+GILBARBARA=${LOGOSPATH}/gilbarbara
+SIMPLEICONS=${LOGOSPATH}/simpleicons
 
 if [ ! -d "$GILBARBARA" ]; then
   mkdir -p $GILBARBARA && \
@@ -9,4 +15,11 @@ if [ ! -d "$GILBARBARA" ]; then
     git checkout app
 else
   cd $GILBARBARA && git pull
+fi
+
+if [ ! -d "$SIMPLEICONS" ]; then
+  mkdir -p $SIMPLEICONS && \
+    git clone https://github.com/danleech/simple-icons $SIMPLEICONS
+else
+  cd $SIMPLEICONS && git pull
 fi
