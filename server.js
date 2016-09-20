@@ -1,48 +1,30 @@
 "use strict";
 
+const path = require('path');
 const express = require('express');
 const app = express();
-const path = require('path');
-const _ = require('lodash');
 
 const PORT = process.env.LOGOSAPI_PORT || 8000;
 const BASE_URL = process.env.LOGOSAPI_URL || 'http://localhost:' + PORT;
 const LOGOS_BASE_PATH = path.join(process.cwd(), 'logos');
 
-/* Load logos from all sources */
-const gilbarbara = require('./lib/gilbarbara')(LOGOS_BASE_PATH);
-const simpleicons = require('./lib/simpleicons')(LOGOS_BASE_PATH);
-const logos = _.union(
-  gilbarbara(),
-  simpleicons()
-).map(logo => Object.assign(logo, {
-  // Augment every logo with full URL to image
-  logoURL: BASE_URL + '/' + logo.shortname
-}));
-
-/* Search all logos by attribute */
-function searchLogos(query, attribute) {
-  if (!query) return logos;
-  attribute = attribute || 'shortname';
-  const queryClean = query.replace(/[.\-() ]/gi, '').toLowerCase();
-  return logos.filter(logo => {
-    return logo[attribute].indexOf(queryClean) > -1;
-  });
-}
-
-/* Find logo by attribute */
-const getLogo = (attribute, value) => logos
-  .find(logo => logo[attribute] === value);
+const logos = require('./lib/logos')(LOGOS_BASE_PATH, {
+  baseURL: BASE_URL
+});
 
 /* Search logos */
 app.get('/?', (req, res) => {
-  const logos = searchLogos(req.query.q);
-  res.json(logos);
+  const { q: shortname, source } = req.query;
+  let conditions = Object.assign({},
+    shortname ? { shortname } : {},
+    source    ? { source } : {}
+  );
+  res.json(logos.search(conditions));
 });
 
 /* Serve logo image */
-app.get('/:logo', (req, res, next) => {
-  const logo = getLogo('shortname', req.params.logo);
+app.get('/:id', (req, res, next) => {
+  const logo = logos.findById(req.params.id);
   if (logo) {
     const logoFile = path.join(LOGOS_BASE_PATH, logo.path);
     res.sendFile(logoFile, {
@@ -69,5 +51,5 @@ app.use(function(err, req, res) {
 });
 
 app.listen(PORT, () => {
-  console.log("Logos API serving %d logos on port %d.", logos.length, PORT);
+  console.log("Logos API serving %d logos on port %d.", logos.all.length, PORT);
 });

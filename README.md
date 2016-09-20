@@ -3,9 +3,13 @@
 > Simple Node.js application providing a RESTful API for searching and retrieving
 > logos from various user-contributed sources.
 
+**NOTE:** This project is a work-in-progress and the API may change at any time.
+It's main purpose is being the backend for my
+[Sketch logo fetcher](https://github.com/soulchild/sketch-logo-fetcher) plugin.
+
 ## Live demo
 
-Check out a running installation on Heroku:
+Check out a running installation:
 
 - [Search for Google](http://logos-api.funkreich.de/?q=google)
 - [Get Github logo](http://logos-api.funkreich.de/github)
@@ -27,13 +31,18 @@ npm start
 
 ### Search
 
+#### By name
+
 - http://localhost:8000/?q=gitlab
-- http://localhost:8000/?q=soundcloud
 
-### Get logo by id
+#### By name and source
 
-- http://localhost:8000/gitlab
-- http://localhost:8000/soundcloud
+- http://localhost:8000/?q=soundcloud&source=simpleicons
+
+### Get logo
+
+- http://localhost:8000/gilbarbara-gitlab
+- http://localhost:8000/simpleicons-soundcloud
 
 ## Updating the logos
 
