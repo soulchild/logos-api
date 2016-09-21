@@ -50,7 +50,9 @@ I deliberately didn't use the readily available [instant-logos](https://github.c
 
 ## Thank you
 
-Many thanks to [gilbarbara](https://github.com/gilbarbara) for compiling/creating the logos!
+Kudos to all the [people doing the hard work](#logo-sources) of compiling and creating the logos!
+
+Thanks to [DG-i](https://www.dg-i.net) for hosting the API.
 
 ## Authors
 
