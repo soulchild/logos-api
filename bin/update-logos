@@ -7,6 +7,7 @@ BASE_DIR=${SCRIPT_DIR}/..
 LOGOSPATH=${BASE_DIR}/logos
 GILBARBARA=${LOGOSPATH}/gilbarbara
 SIMPLEICONS=${LOGOSPATH}/simpleicons
+INSTANTLOGOS=${LOGOSPATH}/instantlogos
 
 if [ ! -d "$GILBARBARA" ]; then
   mkdir -p $GILBARBARA && \
@@ -22,4 +23,11 @@ if [ ! -d "$SIMPLEICONS" ]; then
     git clone https://github.com/danleech/simple-icons $SIMPLEICONS
 else
   cd $SIMPLEICONS && git pull
+fi
+
+if [ ! -d "$INSTANTLOGOS" ]; then
+  mkdir -p $INSTANTLOGOS && \
+    git clone https://github.com/kogg/instant-logos.git $INSTANTLOGOS
+else
+  cd $INSTANTLOGOS && git pull
 fi
