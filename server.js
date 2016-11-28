@@ -22,6 +22,10 @@ app.get('/?', (req, res) => {
   res.json(logos.search(conditions));
 });
 
+app.get('/ping', (req, res) => {
+  res.send('pong');
+});
+
 /* Serve logo image */
 app.get('/:id', (req, res, next) => {
   const logo = logos.findById(req.params.id);

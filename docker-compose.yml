@@ -3,5 +3,6 @@ app:
   environment:
     LOGOSAPI_PORT: 8000
     LOGOSAPI_URL: http://logos-api.funkreich.de
+  restart: unless-stopped
   ports:
     - '8000:8000'
