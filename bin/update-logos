@@ -11,12 +11,11 @@ INSTANTLOGOS=${LOGOSPATH}/instantlogos
 
 if [ ! -d "$GILBARBARA" ]; then
   mkdir -p $GILBARBARA && \
-    git clone https://github.com/gilbarbara/logos $GILBARBARA && \
-    cd $GILBARBARA && \
-    git checkout app
+    git clone https://github.com/gilbarbara/logos $GILBARBARA
 else
   cd $GILBARBARA && git pull
 fi
+curl -s -o $GILBARBARA/items.json https://logos-c87b5.firebaseio.com/items.json
 
 if [ ! -d "$SIMPLEICONS" ]; then
   mkdir -p $SIMPLEICONS && \
