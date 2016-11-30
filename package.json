@@ -15,13 +15,9 @@
   ],
   "author": "Tobi Kremer <tobias.kremer@gmail.com>",
   "license": "ISC",
-  "engines": {
-    "node": "5.8.0"
-  },
   "dependencies": {
     "express": "^4.13.4",
-    "lodash": "^4.13.1",
-    "request": "^2.79.0"
+    "lodash": "^4.13.1"
   },
   "devDependencies": {
     "eslint": "^3.11.1",
