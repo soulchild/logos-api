@@ -1,8 +1,8 @@
+const assert = require('assert');
+const path = require('path');
 const logos = require('../lib/logos');
 const LogosAPI = require('../lib/api');
-const assert = require('assert');
 
-const path = require('path');
 const logosPath = path.resolve(__dirname, '../logos');
 
 describe('logos', function() {

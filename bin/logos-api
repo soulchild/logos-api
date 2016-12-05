@@ -1,0 +1,17 @@
+#!/usr/bin/env node
+
+const path = require('path');
+const pkg = require(path.resolve(__dirname, '../package.json'));
+const logosApp = require(path.resolve(__dirname, '../app'));
+
+const PORT = process.env.LOGOSAPI_PORT || 8000;
+
+logosApp.bootstrap().then(app => {
+  return app.listen(PORT, () => {
+    console.log('%s v%s serving logos on port %d.',
+      pkg.name,
+      pkg.version,
+      PORT
+    );
+  });
+}).catch(console.error);

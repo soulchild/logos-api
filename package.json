@@ -4,8 +4,8 @@
   "description": "RESTful API for searching and retrieving logos from various user-contributed sources",
   "main": "server.js",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
+    "start": "node bin/logos-api",
+    "dev": "nodemon bin/logos-api",
     "postinstall": "npm run update-logos",
     "update-logos": "./bin/update-logos",
     "lint": "eslint ./lib --cache --ignore-pattern .gitignore",
@@ -17,6 +17,7 @@
   "author": "Tobi Kremer <tobias.kremer@gmail.com>",
   "license": "ISC",
   "dependencies": {
+    "bluebird": "^3.4.6",
     "express": "^4.13.4",
     "lodash": "^4.13.1"
   },
