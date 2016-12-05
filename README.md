@@ -3,6 +3,8 @@
 > Simple Node.js application providing a RESTful API for searching and retrieving
 > logos from various user-contributed sources.
 
+[![Build Status](https://travis-ci.org/soulchild/logos-api.svg?branch=master)](https://travis-ci.org/soulchild/logos-api)
+
 **NOTE:** This project is a work-in-progress and the API may change at any time.
 It's main purpose is being the backend for my
 [Sketch logo fetcher](https://github.com/soulchild/sketch-logo-fetcher) plugin.

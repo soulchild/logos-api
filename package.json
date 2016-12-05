@@ -8,7 +8,8 @@
     "dev": "nodemon server.js",
     "postinstall": "npm run update-logos",
     "update-logos": "./bin/update-logos",
-    "lint": "eslint ./lib --cache --ignore-pattern .gitignore"
+    "lint": "eslint ./lib --cache --ignore-pattern .gitignore",
+    "test": "mocha --reporter spec"
   },
   "pre-commit": [
     "lint"
@@ -21,6 +22,7 @@
   },
   "devDependencies": {
     "eslint": "^3.11.1",
+    "mocha": "^3.2.0",
     "nodemon": "^1.9.2",
     "pre-commit": "^1.1.3"
   }

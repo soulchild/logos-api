@@ -1,0 +1,26 @@
+[
+  {
+    "name": "500px",
+    "shortname": "500px",
+    "url": "https://500px.com/",
+    "source": "gilbarbara",
+    "path": "gilbarbara/logos/500px.svg",
+    "id": "gilbarbara-500px"
+  },
+  {
+    "shortname": "500px",
+    "name": "500px",
+    "url": "https://about.500px.com/press",
+    "path": "simpleicons/icons/500px.svg",
+    "source": "simpleicons",
+    "id": "simpleicons-500px"
+  },
+  {
+    "name": "Airbnb",
+    "shortname": "airbnb",
+    "url": "https://www.airbnb.com/",
+    "source": "gilbarbara",
+    "path": "gilbarbara/logos/airbnb.svg",
+    "id": "gilbarbara-airbnb"
+  }
+]
