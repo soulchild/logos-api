@@ -14,8 +14,8 @@ It's main purpose is being the backend for my
 Check out a running installation:
 
 - [Search for Google](http://logos-api.funkreich.de/?q=google)
-- [Get Soundcloud logo from Gilbarbara](http://logos-api.funkreich.de/gilbarbara-soundcloud)
-- [Get Github logo from Simple Icons](http://logos-api.funkreich.de/simpleicons-github)
+- [Get Soundcloud logo from Gilbarbara](http://logos-api.funkreich.de/logo/gilbarbara-soundcloud)
+- [Get Github logo from Simple Icons](http://logos-api.funkreich.de/logo/simpleicons-github)
 
 ## Logo sources
 
