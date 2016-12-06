@@ -4,6 +4,7 @@ const path = require('path');
 const express = require('express');
 const logos = require('./lib/logos');
 const app = express();
+const pkg = require('./package.json');
 
 const PORT = process.env.LOGOSAPI_PORT || 8000;
 const BASE_URL = process.env.LOGOSAPI_URL || 'http://localhost:' + PORT;
@@ -25,24 +26,28 @@ module.exports = {
       });
 
       /*
-       * Health check
-       */
-      app.get('/ping', (req, res) => {
-        res.json({
-          'ping': 'pong'
-        });
-      });
-
-      /*
        * Serve logo image
        */
-      app.get('/:id', (req, res, next) => {
+      app.get('/logo/:id', (req, res, next) => {
         const logo = logosAPI.findById(req.params.id);
         if (!logo) next();
         const logoFile = path.join(LOGOS_BASE_PATH, logo.path);
         res.sendFile(logoFile, {
           headers: {
             'Content-Type': 'image/svg+xml'
+          }
+        });
+      });
+
+      /*
+       * Health check
+       */
+      app.get('/ping', (req, res) => {
+        res.json({
+          'name': pkg.name,
+          'version': pkg.version,
+          'stats': {
+            logosTotalCount: logosAPI.getAll().length
           }
         });
       });
@@ -71,6 +76,6 @@ module.exports = {
 
 function addLogoURL(logo) {
   return Object.assign(logo, {
-    logoURL: BASE_URL + '/' + logo.id
+    logoURL: BASE_URL + '/logo/' + logo.id
   });
 }
