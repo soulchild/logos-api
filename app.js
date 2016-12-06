@@ -3,12 +3,12 @@
 const path = require('path');
 const express = require('express');
 const logos = require('./lib/logos');
-const app = express();
 const pkg = require('./package.json');
+const app = express();
 
 const PORT = process.env.LOGOSAPI_PORT || 8000;
 const BASE_URL = process.env.LOGOSAPI_URL || 'http://localhost:' + PORT;
-const LOGOS_BASE_PATH = path.join(process.cwd(), 'logos');
+const LOGOS_BASE_PATH = path.resolve(__dirname, 'logos');
 
 module.exports = {
   bootstrap: () => {
@@ -22,7 +22,7 @@ module.exports = {
           shortname ? { shortname } : {},
           source    ? { source } : {}
         );
-        res.json(logosAPI.search(conditions).map(addLogoURL));
+        res.json(logosAPI.search(conditions).map(treatLogoProperties));
       });
 
       /*
@@ -74,8 +74,10 @@ module.exports = {
   }
 };
 
-function addLogoURL(logo) {
-  return Object.assign(logo, {
+function treatLogoProperties(logo) {
+  const { id, name, shortname, url, source } = logo;
+  return {
+    id, name, shortname, url, source,
     logoURL: BASE_URL + '/logo/' + logo.id
-  });
+  };
 }
