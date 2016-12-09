@@ -2,7 +2,11 @@
   "name": "logos-api",
   "version": "0.2.0",
   "description": "RESTful API for searching and retrieving logos from various user-contributed sources",
-  "main": "server.js",
+  "main": "app.js",
+  "repository": {
+    "url": "https://github.com/soulchild/logos-api",
+    "type": "git"
+  },
   "scripts": {
     "start": "node bin/logos-api",
     "dev": "nodemon bin/logos-api",
