@@ -4,7 +4,7 @@ const assert = require('assert');
 const logosFixture = require('./fixtures/logos.json');
 const api = new LogosAPI(logosFixture);
 
-describe('api', function() {
+describe('api', () => {
   it('returns 500px logo by id', () => {
     const logo = api.findById('gilbarbara-500px');
     assert(logo instanceof Object);

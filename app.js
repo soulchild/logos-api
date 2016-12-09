@@ -8,11 +8,10 @@ const app = express();
 
 const PORT = process.env.LOGOSAPI_PORT || 8000;
 const BASE_URL = process.env.LOGOSAPI_URL || 'http://localhost:' + PORT;
-const LOGOS_BASE_PATH = path.resolve(__dirname, 'logos');
 
 module.exports = {
-  bootstrap: () => {
-    return logos.init(LOGOS_BASE_PATH).then(logosAPI => {
+  bootstrap: (logosBasePath, options) => {
+    return logos.init(logosBasePath, options).then(logosAPI => {
       /*
        * Search logos
        */
@@ -22,7 +21,7 @@ module.exports = {
           shortname ? { shortname } : {},
           source    ? { source } : {}
         );
-        res.json(logosAPI.search(conditions).map(treatLogoProperties));
+        res.json(logosAPI.search(conditions).map(prepareLogoProperties));
       });
 
       /*
@@ -31,7 +30,7 @@ module.exports = {
       app.get('/logo/:id', (req, res, next) => {
         const logo = logosAPI.findById(req.params.id);
         if (!logo) next();
-        const logoFile = path.join(LOGOS_BASE_PATH, logo.path);
+        const logoFile = path.resolve(logosBasePath, logo.path);
         res.sendFile(logoFile, {
           headers: {
             'Content-Type': 'image/svg+xml'
@@ -74,7 +73,7 @@ module.exports = {
   }
 };
 
-function treatLogoProperties(logo) {
+function prepareLogoProperties(logo) {
   const { id, name, shortname, url, source } = logo;
   return {
     id, name, shortname, url, source,
