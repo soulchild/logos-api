@@ -1,4 +1,4 @@
-FROM node:6
+FROM node:8
 
 ENV LOGOSAPI_PORT=8000
 ENV USER=logos
@@ -13,8 +13,7 @@ COPY package.json ${APPDIR}
 COPY bin/update-logos ${APPDIR}/bin/update-logos
 
 # --unsafe-perm to allow postinstall script to run as root (instead of nobody)
-RUN npm install --unsafe-perm --production && \
-  npm cache clean
+RUN npm install --unsafe-perm --production
 
 COPY . ${APPDIR}
 
