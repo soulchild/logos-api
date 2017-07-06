@@ -4,6 +4,8 @@ const path = require('path');
 const express = require('express');
 const logos = require('./lib/logos');
 const pkg = require('./package.json');
+const { APIError } = require('./lib/errors');
+
 const app = express();
 
 const PORT = process.env.LOGOSAPI_PORT || 8000;
@@ -38,7 +40,7 @@ module.exports = {
         );
         const matchingLogos = logosAPI.search(conditions);
         if (matchingLogos.length > MAX_RESULTS) {
-          const err = new Error('Too many results. Please be more specific.');
+          const err = new APIError('Too many results. Please be more specific.');
           err.status = 403;
           return done(err);
         }
@@ -88,10 +90,16 @@ module.exports = {
         if (res.headersSent) {
           return done(err);
         }
-        console.error('huuh', err.stack);
-        res.status(err.status || 500).json({
-          error: err.message
-        });
+        if (err instanceof APIError) {
+          res.status(err.status || 500).json({
+            error: err.message
+          });
+        } else {
+          console.error(err.stack);
+          res.status(500).json({
+            error: 'Fatal error'
+          });
+        }
       });
 
       return app;
