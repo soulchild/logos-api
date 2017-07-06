@@ -1,5 +1,7 @@
 #!/usr/bin/env node
 
+'use strict';
+
 const path = require('path');
 const pkg = require(path.resolve(__dirname, '../package.json'));
 const logosApp = require(path.resolve(__dirname, '../app'));
@@ -11,7 +13,8 @@ logosApp
   .bootstrap(logosBasePath)
   .then(app => {
     return app.listen(PORT, () => {
-      console.log('%s v%s serving logos on port %d.',
+      console.log(
+        '%s v%s serving logos on port %d.',
         pkg.name,
         pkg.version,
         PORT

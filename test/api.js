@@ -1,3 +1,5 @@
+'use strict';
+
 const LogosAPI = require('../lib/api');
 const assert = require('assert');
 

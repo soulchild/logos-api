@@ -9,19 +9,40 @@ const app = express();
 const PORT = process.env.LOGOSAPI_PORT || 8000;
 const BASE_URL = process.env.LOGOSAPI_URL || 'http://localhost:' + PORT;
 
+const MAX_RESULTS = 50;
+
+function prepareLogoProperties(logo) {
+  const { id, name, shortname, url, source } = logo;
+  return {
+    id,
+    name,
+    shortname,
+    url,
+    source,
+    logoURL: BASE_URL + '/logo/' + logo.id
+  };
+}
+
 module.exports = {
   bootstrap: (logosBasePath, options) => {
     return logos.init(logosBasePath, options).then(logosAPI => {
       /*
        * Search logos
        */
-      app.get('/?', (req, res) => {
+      app.get('/?', (req, res, done) => {
         const { q: shortname, source } = req.query;
-        let conditions = Object.assign({},
+        const conditions = Object.assign(
+          {},
           shortname ? { shortname } : {},
-          source    ? { source } : {}
+          source ? { source } : {}
         );
-        res.json(logosAPI.search(conditions).map(prepareLogoProperties));
+        const matchingLogos = logosAPI.search(conditions);
+        if (matchingLogos.length > MAX_RESULTS) {
+          const err = new Error('Too many results. Please be more specific.');
+          err.status = 403;
+          return done(err);
+        }
+        res.json(matchingLogos.map(prepareLogoProperties));
       });
 
       /*
@@ -43,9 +64,9 @@ module.exports = {
        */
       app.get('/ping', (req, res) => {
         res.json({
-          'name': pkg.name,
-          'version': pkg.version,
-          'stats': {
+          name: pkg.name,
+          version: pkg.version,
+          stats: {
             logosTotalCount: logosAPI.getAll().length
           }
         });
@@ -63,20 +84,17 @@ module.exports = {
       /*
        * Errors
        */
-      app.use(function(err, req, res) {
-        console.error(err.stack);
-        res.status(err.status || 500).json(err.message);
+      app.use((err, req, res, done) => {
+        if (res.headersSent) {
+          return done(err);
+        }
+        console.error('huuh', err.stack);
+        res.status(err.status || 500).json({
+          error: err.message
+        });
       });
 
       return app;
     });
   }
 };
-
-function prepareLogoProperties(logo) {
-  const { id, name, shortname, url, source } = logo;
-  return {
-    id, name, shortname, url, source,
-    logoURL: BASE_URL + '/logo/' + logo.id
-  };
-}
