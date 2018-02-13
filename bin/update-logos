@@ -15,7 +15,6 @@ if [ ! -d "$GILBARBARA" ]; then
 else
   cd $GILBARBARA && git pull
 fi
-curl -s -o $GILBARBARA/items.json https://logos-c87b5.firebaseio.com/items.json
 
 if [ ! -d "$SIMPLEICONS" ]; then
   mkdir -p $SIMPLEICONS && \
