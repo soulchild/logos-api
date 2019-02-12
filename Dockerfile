@@ -1,4 +1,4 @@
-FROM node:8
+FROM node:10
 
 ENV LOGOSAPI_PORT=8000
 ENV USER=logos
