@@ -2,6 +2,7 @@
 
 'use strict';
 
+const logger = require('../lib/logger');
 const path = require('path');
 const pkg = require(path.resolve(__dirname, '../package.json'));
 const logosApp = require(path.resolve(__dirname, '../app'));
@@ -13,7 +14,7 @@ logosApp
   .bootstrap(logosBasePath)
   .then(app => {
     return app.listen(PORT, () => {
-      console.log(
+      logger.info(
         '%s v%s serving logos on port %d.',
         pkg.name,
         pkg.version,
@@ -21,4 +22,4 @@ logosApp
       );
     });
   })
-  .catch(console.error);
+  .catch(logger.error);

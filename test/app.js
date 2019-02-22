@@ -1,9 +1,7 @@
-'use strict';
-
-const App = require('../app.js');
 const request = require('supertest');
 const path = require('path');
 const assert = require('assert');
+const App = require('../app.js');
 
 const logosBasePath = path.resolve(__dirname, 'logos');
 const sourcesPath = path.resolve(__dirname, 'mocks', 'sources');
@@ -14,7 +12,9 @@ describe('app', () => {
   before('bootstrap', () => {
     return App.bootstrap(logosBasePath, {
       sourcesPath
-    }).then(theApp => (app = theApp));
+    }).then(theApp => {
+      app = theApp;
+    });
   });
 
   it('responds with json', done => {
@@ -25,7 +25,9 @@ describe('app', () => {
   });
 
   it('responds with 404', done => {
-    request(app).get('/foo').expect(404, done);
+    request(app)
+      .get('/foo')
+      .expect(404, done);
   });
 
   it('returns search result', done => {

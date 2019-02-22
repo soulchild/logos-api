@@ -1,6 +1,11 @@
 language: node_js
 node_js:
   - "10"
+
+services:
+  - docker
+
 notifications:
   recipients:
     - ci@funkreich.de
+
