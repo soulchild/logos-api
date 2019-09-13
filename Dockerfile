@@ -1,24 +1,22 @@
-FROM node:12
+FROM node:12-alpine
 
 ENV LOGOSAPI_PORT=8000
-ENV USER=logos
-ENV HOME=/home/${USER}
-ENV APPDIR=${HOME}
-
-RUN useradd --user-group --create-home --shell /bin/false ${USER}
+ENV APPDIR=/usr/src/app
 
 WORKDIR $APPDIR
 
-COPY package.json ${APPDIR}
+RUN apk update && apk add bash git
+
+COPY package.json .
 RUN npm install --production
 
 COPY bin/update-logos ${APPDIR}/bin/update-logos
 RUN npm run update-logos
 
-COPY . ${APPDIR}
+COPY . .
 
 EXPOSE ${LOGOSAPI_PORT}
 
-USER ${USER}
+USER node
 
 CMD [ "npm", "start" ]
