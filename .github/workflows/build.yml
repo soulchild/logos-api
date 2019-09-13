@@ -1,5 +1,5 @@
-name: Node CI
-
+name: logos-api
+ 
 on: 
   - push
   - schedule:
