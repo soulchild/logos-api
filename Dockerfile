@@ -10,9 +10,9 @@ RUN useradd --user-group --create-home --shell /bin/false ${USER}
 WORKDIR $APPDIR
 
 COPY package.json ${APPDIR}
-COPY bin/update-logos ${APPDIR}/bin/update-logos
-
 RUN npm install --production
+
+COPY bin/update-logos ${APPDIR}/bin/update-logos
 RUN npm run update-logos
 
 COPY . ${APPDIR}
