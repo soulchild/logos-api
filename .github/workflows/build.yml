@@ -3,11 +3,9 @@ on: push
 jobs:
   build:
     runs-on: ubuntu-latest
-
     strategy:
       matrix:
         node-version: [8.x, 10.x, 12.x]
-
     steps:
     - uses: actions/checkout@v1
     - name: Use Node.js ${{ matrix.node-version }}
@@ -18,5 +16,15 @@ jobs:
       run: |
         npm install
         npm test
+        npm run update-logos
       env:
         CI: true
+    - name: build docker image
+      uses: actions/docker/cli@master"
+      args: build -t soulchild/logos-api .
+    - name: log into dockerhub
+      uses: actions/docker/login@master
+      env:
+        DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
+        DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
+        
