@@ -21,7 +21,8 @@ jobs:
         CI: true
     - name: build docker image
       uses: actions/docker/cli@master"
-      args: build -t soulchild/logos-api .
+      with:
+        args: build -t soulchild/logos-api .
     - name: log into dockerhub
       uses: actions/docker/login@master
       env:
