@@ -1,7 +1,5 @@
-name: logos-api
- 
-on: [push]
-
+name: logosapi
+on: push
 jobs:
   build:
     runs-on: ubuntu-latest
