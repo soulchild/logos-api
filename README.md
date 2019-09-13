@@ -3,7 +3,7 @@
 > Simple Node.js application providing a RESTful API for searching and retrieving
 > logos from various user-contributed sources.
 
-[![Build Status](https://travis-ci.org/soulchild/logos-api.svg?branch=master)](https://travis-ci.org/soulchild/logos-api)
+[![Build Status](https://travis-ci.org/soulchild/logos-api.svg?branch=master)](https://travis-ci.org/soulchild/logos-api) [![Actions Status]()](https://github.com/soulchild/logos-api/workflows/logosapi/badge.svg)](https://github.com/soulchild/logos-api/actions) 
 
 **NOTE:** This project is a work-in-progress and the API may change at any time.
 Its main purpose is being the backend for my
@@ -29,6 +29,14 @@ Check out a running installation:
 npm install
 npm start
 ```
+
+## Docker
+
+```bash
+docker run --rm -p 8000:8000 --name logos-api soulchild/logos-api:latest
+```
+
+Browse to: [http://localhost:8000](http://localhost:8000)
 
 ## Examples
 
