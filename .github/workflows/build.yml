@@ -1,7 +1,7 @@
 name: logosapi
 on: push
 jobs:
-  build:
+  test:
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -19,13 +19,19 @@ jobs:
         npm run update-logos
       env:
         CI: true
+  build:
+    runs-on: ubuntu-latest
+    steps:
     - name: build docker image
       uses: actions/docker/cli@master
       with:
         args: build -t soulchild/logos-api .
-    - name: log into dockerhub
+    - name: log into docker hub
       uses: actions/docker/login@master
       env:
         DOCKER_USERNAME: ${{ secrets.DOCKER_USERNAME }}
         DOCKER_PASSWORD: ${{ secrets.DOCKER_PASSWORD }}
-        
+    - name: push to docker hub
+      uses: actions/docker/cli@master
+      with:
+        args: push soulchild/logos-api
