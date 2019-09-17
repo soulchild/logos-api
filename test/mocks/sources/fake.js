@@ -1,5 +1,7 @@
-module.exports = () => {
-  return Promise.resolve([
+'use strict';
+
+module.exports = () =>
+  Promise.resolve([
     {
       name: 'ACME Corp.',
       shortname: 'acme',
@@ -13,4 +15,3 @@ module.exports = () => {
       path: 'fake/acme.svg'
     }
   ]);
-};

@@ -2,10 +2,11 @@
 
 'use strict';
 
-const logger = require('../lib/logger');
 const path = require('path');
-const pkg = require(path.resolve(__dirname, '../package.json'));
-const logosApp = require(path.resolve(__dirname, '../app'));
+
+const logger = require('../lib/logger');
+const pkg = require('../package.json');
+const logosApp = require('../app');
 
 const PORT = process.env.LOGOSAPI_PORT || 8000;
 const logosBasePath = path.resolve(__dirname, '..', 'logos');
