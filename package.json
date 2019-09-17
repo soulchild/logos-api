@@ -1,6 +1,6 @@
 {
   "name": "logos-api",
-  "version": "0.2.7",
+  "version": "0.2.8",
   "description": "RESTful API for searching and retrieving logos from various user-contributed sources",
   "main": "app.js",
   "repository": {
