@@ -8,6 +8,7 @@ LOGOSPATH=${BASE_DIR}/logos
 GILBARBARA=${LOGOSPATH}/gilbarbara
 SIMPLEICONS=${LOGOSPATH}/simpleicons
 INSTANTLOGOS=${LOGOSPATH}/instantlogos
+VECTORLOGOZONE=${LOGOSPATH}/vectorlogozone
 
 if [ ! -d "$GILBARBARA" ]; then
   mkdir -p $GILBARBARA && \
@@ -28,4 +29,16 @@ if [ ! -d "$INSTANTLOGOS" ]; then
     git clone https://github.com/kogg/instant-logos.git $INSTANTLOGOS
 else
   cd $INSTANTLOGOS && git pull
+fi
+
+if [ ! -d "$VECTORLOGOZONE" ]; then
+  mkdir -p "$VECTORLOGOZONE"
+  cd "$VECTORLOGOZONE"
+  git init .
+  git remote add origin https://github.com/VectorLogoZone/vectorlogozone.git
+  git config core.sparsecheckout true
+  echo "www/logos/*/*.svg" >>.git/info/sparse-checkout
+  git pull --depth=1 origin gh-pages
+else
+  cd "$VECTORLOGOZONE" && git pull origin gh-pages
 fi
