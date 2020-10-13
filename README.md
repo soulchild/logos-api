@@ -22,6 +22,7 @@ Check out a running installation:
   * [Gilbarbara's SVG logos](https://github.com/gilbarbara/logos)
   * [Dan Leech's Simple Icons](https://github.com/danleech/simple-icons)
   * [Instant Logos](https://github.com/kogg/instant-logos)
+  * [VectorLogoZone](https://www.vectorlogo.zone/)
 
 ## Installation
 
