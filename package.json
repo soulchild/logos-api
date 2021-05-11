@@ -11,7 +11,8 @@
     "start": "node bin/logos-api",
     "dev": "nodemon bin/logos-api | pino-pretty -c -t",
     "update-logos": "./bin/update-logos",
-    "test": "mocha --reporter spec"
+    "test": "mocha --reporter spec",
+    "prepare": "husky install"
   },
   "author": "Tobi Kremer <tobias.kremer@gmail.com>",
   "license": "ISC",
@@ -24,16 +25,16 @@
   "devDependencies": {
     "eslint": "^7.11.0",
     "eslint-config-airbnb-base": "^14.2.0",
-    "eslint-config-prettier": "^6.12.0",
+    "eslint-config-prettier": "^8.3.0",
     "eslint-plugin-import": "^2.22.1",
     "eslint-plugin-prettier": "^3.1.4",
-    "husky": "^4.3.0",
-    "lint-staged": "^10.4.0",
+    "husky": "^6.0.0",
+    "lint-staged": "^11.0.0",
     "mocha": "^8.1.3",
     "nodemon": "^2.0.4",
     "pino-pretty": "^4.3.0",
     "prettier": "^2.1.2",
-    "supertest": "^5.0.0"
+    "supertest": "^6.1.3"
   },
   "engines": {
     "node": ">=8"
