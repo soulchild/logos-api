@@ -38,7 +38,7 @@ if [ ! -d "$VECTORLOGOZONE" ]; then
   git remote add origin https://github.com/VectorLogoZone/vectorlogozone.git
   git config core.sparsecheckout true
   echo "www/logos/*/*.svg" >>.git/info/sparse-checkout
-  git pull --depth=1 origin gh-pages
+  git pull --depth=1 origin main
 else
-  cd "$VECTORLOGOZONE" && git pull origin gh-pages
+  cd "$VECTORLOGOZONE" && git pull origin main
 fi
