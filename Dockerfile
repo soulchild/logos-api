@@ -8,6 +8,7 @@ WORKDIR $APPDIR
 RUN apk update && apk add bash git
 
 COPY package.json package-lock.json ./
+RUN npm set-script prepare ""
 RUN npm install --production
 
 COPY bin/update-logos ${APPDIR}/bin/update-logos
