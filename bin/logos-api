@@ -13,14 +13,14 @@ const logosBasePath = path.resolve(__dirname, '..', 'logos');
 
 logosApp
   .bootstrap(logosBasePath)
-  .then(app => {
-    return app.listen(PORT, () => {
+  .then((app) =>
+    app.listen(PORT, () => {
       logger.info(
         '%s v%s serving logos on port %d.',
         pkg.name,
         pkg.version,
         PORT
       );
-    });
-  })
-  .catch(logger.error);
+    })
+  )
+  .catch((err) => logger.fatal(err));
