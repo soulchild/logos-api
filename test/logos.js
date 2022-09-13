@@ -11,16 +11,16 @@ const fakeSourcesPath = path.resolve(__dirname, 'mocks', 'sources');
 describe('logos', () => {
   let api;
 
-  before('initialize logos', () => {
+  before('initialize logos', () =>
     // Initialize logos with fake logo module
-    return logos
+    logos
       .init(logosPath, {
-        sourcesPath: fakeSourcesPath
+        sourcesPath: fakeSourcesPath,
       })
-      .then(logosAPI => {
+      .then((logosAPI) => {
         api = logosAPI;
-      });
-  });
+      })
+  );
 
   it('returns a LogosAPI object', () => {
     assert(api instanceof LogosAPI);
@@ -34,7 +34,7 @@ describe('logos', () => {
         url: 'https://www.example.com/',
         id: 'fake-acme',
         source: 'fake',
-        path: 'fake/acme.svg'
+        path: 'fake/acme.svg',
       },
       {
         name: 'FooBar Corp.',
@@ -42,8 +42,8 @@ describe('logos', () => {
         url: 'https://foobar.example.com/',
         id: 'fake-foobar',
         source: 'fake',
-        path: 'fake/acme.svg'
-      }
+        path: 'fake/acme.svg',
+      },
     ]);
   });
 });

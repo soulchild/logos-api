@@ -22,7 +22,7 @@ function prepareLogoProperties(logo) {
     shortname,
     url,
     source,
-    logoURL: `${BASE_URL}/logo/${logo.id}`
+    logoURL: `${BASE_URL}/logo/${logo.id}`,
   };
 }
 
@@ -36,7 +36,7 @@ module.exports = {
       const { q: name, source } = req.query;
       const conditions = {
         name,
-        source
+        source,
       };
       const matchingLogos = logosAPI.search(conditions);
       if (matchingLogos.length > MAX_RESULTS) {
@@ -57,8 +57,8 @@ module.exports = {
       const logoFile = path.resolve(logosBasePath, logo.path);
       res.sendFile(logoFile, {
         headers: {
-          'Content-Type': 'image/svg+xml'
-        }
+          'Content-Type': 'image/svg+xml',
+        },
       });
     });
 
@@ -70,8 +70,8 @@ module.exports = {
         name: pkg.name,
         version: pkg.version,
         stats: {
-          logosTotalCount: logosAPI.getAll().length
-        }
+          logosTotalCount: logosAPI.getAll().length,
+        },
       });
     });
 
@@ -80,7 +80,7 @@ module.exports = {
      */
     app.all('*', (req, res) => {
       res.status(404).json({
-        error: 'Not found'
+        error: 'Not found',
       });
     });
 
@@ -94,16 +94,16 @@ module.exports = {
       }
       if (err instanceof APIError) {
         res.status(err.status || 500).json({
-          error: err.message
+          error: err.message,
         });
       } else {
         logger.error(err);
         res.status(500).json({
-          error: 'Fatal error'
+          error: 'Fatal error',
         });
       }
     });
 
     return app;
-  }
+  },
 };

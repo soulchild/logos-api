@@ -21,7 +21,7 @@ describe('api', () => {
   it('returns correct search results - 1 condition', () => {
     assert.equal(
       api.search({
-        name: '500px'
+        name: '500px',
       }).length,
       2
     );
@@ -31,7 +31,7 @@ describe('api', () => {
     assert.equal(
       api.search({
         name: '500px',
-        source: 'simpleicons'
+        source: 'simpleicons',
       }).length,
       1
     );
@@ -40,7 +40,7 @@ describe('api', () => {
   it('returns correct search results w/ spaces', () => {
     assert.equal(
       api.search({
-        name: 'Mercedes Benz'
+        name: 'Mercedes Benz',
       }).length,
       1
     );
