@@ -12,33 +12,36 @@ VECTORLOGOZONE=${LOGOSPATH}/vectorlogozone
 
 if [ ! -d "$GILBARBARA" ]; then
   mkdir -p $GILBARBARA && \
-    git clone https://github.com/gilbarbara/logos $GILBARBARA
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/gilbarbara/logos $GILBARBARA && \
+    cd $GILBARBARA && \
+    git sparse-checkout set logos logos.json
 else
   cd $GILBARBARA && git pull
 fi
 
 if [ ! -d "$SIMPLEICONS" ]; then
   mkdir -p $SIMPLEICONS && \
-    git clone https://github.com/danleech/simple-icons $SIMPLEICONS
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/danleech/simple-icons $SIMPLEICONS && \
+    cd $SIMPLEICONS && \
+    git sparse-checkout set _data/simple-icons.json icons
 else
   cd $SIMPLEICONS && git pull
 fi
 
 if [ ! -d "$INSTANTLOGOS" ]; then
   mkdir -p $INSTANTLOGOS && \
-    git clone https://github.com/kogg/instant-logos.git $INSTANTLOGOS
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/kogg/instant-logos.git $INSTANTLOGOS && \
+    cd $INSTANTLOGOS && \
+    git sparse-checkout set logos
 else
   cd $INSTANTLOGOS && git pull
 fi
 
 if [ ! -d "$VECTORLOGOZONE" ]; then
-  mkdir -p "$VECTORLOGOZONE"
-  cd "$VECTORLOGOZONE"
-  git init .
-  git remote add origin https://github.com/VectorLogoZone/vectorlogozone.git
-  git config core.sparsecheckout true
-  echo "www/logos/*/*.svg" >>.git/info/sparse-checkout
-  git pull --depth=1 origin main
+  mkdir -p "$VECTORLOGOZONE" && \
+    git clone --depth 1 --filter=blob:none --sparse https://github.com/VectorLogoZone/vectorlogozone.git $VECTORLOGOZONE && \
+    cd $VECTORLOGOZONE && \
+    git sparse-checkout set www/logos
 else
   cd "$VECTORLOGOZONE" && git pull origin main
 fi
