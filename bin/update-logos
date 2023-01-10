@@ -11,37 +11,41 @@ INSTANTLOGOS=${LOGOSPATH}/instantlogos
 VECTORLOGOZONE=${LOGOSPATH}/vectorlogozone
 
 if [ ! -d "$GILBARBARA" ]; then
-  mkdir -p $GILBARBARA && \
-    git clone --depth 1 --filter=blob:none --sparse https://github.com/gilbarbara/logos $GILBARBARA && \
-    cd $GILBARBARA && \
-    git sparse-checkout set logos logos.json
+  mkdir -p $GILBARBARA \
+    && git clone --no-checkout --depth 1 --filter=blob:none --sparse https://github.com/gilbarbara/logos $GILBARBARA \
+    && cd $GILBARBARA \
+    && git sparse-checkout add logos logos.json \
+    && git checkout
 else
   cd $GILBARBARA && git pull
 fi
 
 if [ ! -d "$SIMPLEICONS" ]; then
-  mkdir -p $SIMPLEICONS && \
-    git clone --depth 1 --filter=blob:none --sparse https://github.com/danleech/simple-icons $SIMPLEICONS && \
-    cd $SIMPLEICONS && \
-    git sparse-checkout set _data/simple-icons.json icons
+  mkdir -p $SIMPLEICONS \
+    && git clone --no-checkout --depth 1 --filter=blob:none --sparse https://github.com/danleech/simple-icons $SIMPLEICONS \
+    && cd $SIMPLEICONS \
+    && git sparse-checkout add _data/simple-icons.json icons \
+    && git checkout
 else
   cd $SIMPLEICONS && git pull
 fi
 
 if [ ! -d "$INSTANTLOGOS" ]; then
-  mkdir -p $INSTANTLOGOS && \
-    git clone --depth 1 --filter=blob:none --sparse https://github.com/kogg/instant-logos.git $INSTANTLOGOS && \
-    cd $INSTANTLOGOS && \
-    git sparse-checkout set logos
+  mkdir -p $INSTANTLOGOS \
+    && git clone --no-checkout --depth 1 --filter=blob:none --sparse https://github.com/kogg/instant-logos.git $INSTANTLOGOS \
+    && cd $INSTANTLOGOS \
+    && git sparse-checkout add logos \
+    && git checkout
 else
   cd $INSTANTLOGOS && git pull
 fi
 
 if [ ! -d "$VECTORLOGOZONE" ]; then
-  mkdir -p "$VECTORLOGOZONE" && \
-    git clone --depth 1 --filter=blob:none --sparse https://github.com/VectorLogoZone/vectorlogozone.git $VECTORLOGOZONE && \
-    cd $VECTORLOGOZONE && \
-    git sparse-checkout set www/logos
+  mkdir -p "$VECTORLOGOZONE" \
+    && git clone --no-checkout --depth 1 --filter=blob:none --sparse https://github.com/VectorLogoZone/vectorlogozone.git $VECTORLOGOZONE \
+    && cd $VECTORLOGOZONE \
+    && git sparse-checkout add www/logos \
+    && git checkout
 else
   cd "$VECTORLOGOZONE" && git pull origin main
 fi
