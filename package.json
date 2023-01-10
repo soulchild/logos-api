@@ -18,23 +18,21 @@
   "author": "Tobi Kremer <tobias.kremer@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "bluebird": "^3.7.2",
     "express": "^4.18.2",
-    "lodash": "^4.17.21",
     "pino": "^8.8.0"
   },
   "devDependencies": {
-    "eslint": "^8.30.0",
+    "eslint": "^8.31.0",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.5.0",
+    "eslint-config-prettier": "^8.6.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.2",
+    "husky": "^8.0.3",
     "lint-staged": "^13.1.0",
     "mocha": "^10.2.0",
     "nodemon": "^2.0.20",
     "pino-pretty": "^9.1.1",
-    "prettier": "^2.8.1",
+    "prettier": "^2.8.2",
     "supertest": "^6.3.3"
   },
   "engines": {
