@@ -5,7 +5,7 @@ ENV APPDIR=/usr/src/app
 
 WORKDIR $APPDIR
 
-RUN apk update && apk add --no-cache tini
+RUN apk update && apk add --no-cache tini bash git
 
 COPY package.json package-lock.json ./
 RUN npm pkg delete scripts.prepare
