@@ -18,31 +18,26 @@
   "author": "Tobi Kremer <tobias.kremer@gmail.com>",
   "license": "ISC",
   "dependencies": {
-    "express": "^4.18.2",
-    "pino": "^8.8.0"
+    "express": "^4.21.0",
+    "pino": "^8.21.0"
   },
   "devDependencies": {
-    "eslint": "^8.31.0",
+    "eslint": "^8.57.1",
     "eslint-config-airbnb-base": "^15.0.0",
-    "eslint-config-prettier": "^8.6.0",
-    "eslint-plugin-import": "^2.26.0",
-    "eslint-plugin-prettier": "^4.2.1",
-    "husky": "^8.0.3",
-    "lint-staged": "^13.1.0",
-    "mocha": "^10.2.0",
-    "nodemon": "^2.0.20",
-    "pino-pretty": "^9.1.1",
-    "prettier": "^2.8.2",
-    "supertest": "^6.3.3"
+    "eslint-config-prettier": "^9.1.0",
+    "eslint-plugin-import": "^2.30.0",
+    "eslint-plugin-prettier": "^5.2.1",
+    "husky": "^9.1.6",
+    "lint-staged": "^15.2.10",
+    "mocha": "^10.7.3",
+    "nodemon": "^3.1.7",
+    "pino-pretty": "^11.2.2",
+    "prettier": "^3.3.3",
+    "supertest": "^7.0.0"
   },
   "engines": {
     "node": ">=16",
     "npm": ">=8"
-  },
-  "husky": {
-    "hooks": {
-      "pre-commit": "lint-staged"
-    }
   },
   "lint-staged": {
     "*.js": [
