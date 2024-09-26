@@ -8,7 +8,7 @@ WORKDIR $APPDIR
 RUN apk update && apk add --no-cache tini
 
 COPY package.json package-lock.json ./
-RUN npm set-script prepare ""
+RUN npm pkg delete scripts.prepare
 RUN npm install --production
 
 COPY bin/update-logos ${APPDIR}/bin/update-logos
