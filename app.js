@@ -1,6 +1,6 @@
 'use strict';
 
-const path = require('path');
+const path = require('node:path');
 const express = require('express');
 const logger = require('./lib/logger');
 const logos = require('./lib/logos');
