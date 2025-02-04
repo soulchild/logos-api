@@ -1,6 +1,6 @@
 'use strict';
 
-const assert = require('assert');
+const assert = require('node:assert');
 const LogosAPI = require('../lib/api');
 
 const logosFixture = require('./fixtures/logos.json');
@@ -23,7 +23,7 @@ describe('api', () => {
       api.search({
         name: '500px',
       }).length,
-      2
+      2,
     );
   });
 
@@ -33,7 +33,7 @@ describe('api', () => {
         name: '500px',
         source: 'simpleicons',
       }).length,
-      1
+      1,
     );
   });
 
@@ -42,7 +42,7 @@ describe('api', () => {
       api.search({
         name: 'Mercedes Benz',
       }).length,
-      1
+      1,
     );
   });
 });

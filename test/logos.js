@@ -1,7 +1,7 @@
 'use strict';
 
-const assert = require('assert');
-const path = require('path');
+const assert = require('node:assert');
+const path = require('node:path');
 const logos = require('../lib/logos');
 const LogosAPI = require('../lib/api');
 
@@ -19,7 +19,7 @@ describe('logos', () => {
       })
       .then((logosAPI) => {
         api = logosAPI;
-      })
+      }),
   );
 
   it('returns a LogosAPI object', () => {

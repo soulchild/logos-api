@@ -2,7 +2,7 @@
 
 'use strict';
 
-const path = require('path');
+const path = require('node:path');
 
 const logger = require('../lib/logger');
 const pkg = require('../package.json');
@@ -19,8 +19,8 @@ logosApp
         '%s v%s serving logos on port %d.',
         pkg.name,
         pkg.version,
-        PORT
+        PORT,
       );
-    })
+    }),
   )
   .catch((err) => logger.fatal(err));

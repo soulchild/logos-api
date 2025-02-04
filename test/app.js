@@ -1,8 +1,8 @@
 'use strict';
 
 const request = require('supertest');
-const path = require('path');
-const assert = require('assert');
+const path = require('node:path');
+const assert = require('node:assert');
 const App = require('../app');
 
 const logosBasePath = path.resolve(__dirname, 'logos');
@@ -16,7 +16,7 @@ describe('app', () => {
       sourcesPath,
     }).then((theApp) => {
       app = theApp;
-    })
+    }),
   );
 
   it('responds with json', (done) => {
