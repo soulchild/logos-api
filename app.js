@@ -32,7 +32,7 @@ module.exports = {
     /*
      * Search logos
      */
-    app.get('/?', (req, res, done) => {
+    app.get('/', (req, res, done) => {
       const { q: name, source } = req.query;
       const conditions = {
         name,
@@ -78,7 +78,7 @@ module.exports = {
     /*
      * 404
      */
-    app.all('*', (req, res) => {
+    app.use((req, res) => {
       res.status(404).json({
         error: 'Not found',
       });
