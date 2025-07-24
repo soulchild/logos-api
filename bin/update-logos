@@ -24,7 +24,7 @@ if [ ! -d "$SIMPLEICONS" ]; then
   mkdir -p $SIMPLEICONS \
     && git clone --no-checkout --depth 1 --filter=blob:none --sparse https://github.com/danleech/simple-icons $SIMPLEICONS \
     && cd $SIMPLEICONS \
-    && git sparse-checkout add _data/simple-icons.json icons \
+    && git sparse-checkout add data/simple-icons.json icons \
     && git checkout
 else
   cd $SIMPLEICONS && git pull
