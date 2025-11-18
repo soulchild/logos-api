@@ -1,8 +1,0 @@
-app:
-  build: .
-  environment:
-    LOGOSAPI_PORT: 8000
-    LOGOSAPI_URL: https://logos-api.funkreich.de
-  restart: unless-stopped
-  ports:
-    - '8000:8000'

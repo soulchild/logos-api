@@ -2,6 +2,7 @@
 
 const assert = require('node:assert');
 const path = require('node:path');
+const { describe, it, before } = require('node:test');
 const logos = require('../lib/logos');
 const LogosAPI = require('../lib/api');
 
@@ -11,16 +12,12 @@ const fakeSourcesPath = path.resolve(__dirname, 'mocks', 'sources');
 describe('logos', () => {
   let api;
 
-  before('initialize logos', () =>
+  before(async () => {
     // Initialize logos with fake logo module
-    logos
-      .init(logosPath, {
-        sourcesPath: fakeSourcesPath,
-      })
-      .then((logosAPI) => {
-        api = logosAPI;
-      }),
-  );
+    api = await logos.init(logosPath, {
+      sourcesPath: fakeSourcesPath,
+    });
+  });
 
   it('returns a LogosAPI object', () => {
     assert(api instanceof LogosAPI);

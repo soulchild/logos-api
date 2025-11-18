@@ -3,6 +3,7 @@
 const request = require('supertest');
 const path = require('node:path');
 const assert = require('node:assert');
+const { describe, it, before } = require('node:test');
 const App = require('../app');
 
 const logosBasePath = path.resolve(__dirname, 'logos');
@@ -11,13 +12,11 @@ const sourcesPath = path.resolve(__dirname, 'mocks', 'sources');
 describe('app', () => {
   let app;
 
-  before('bootstrap', () =>
-    App.bootstrap(logosBasePath, {
+  before(async () => {
+    app = await App.bootstrap(logosBasePath, {
       sourcesPath,
-    }).then((theApp) => {
-      app = theApp;
-    }),
-  );
+    });
+  });
 
   it('responds with json', (done) => {
     request(app)

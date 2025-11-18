@@ -1,6 +1,7 @@
 'use strict';
 
 const assert = require('node:assert');
+const { describe, it } = require('node:test');
 const LogosAPI = require('../lib/api');
 
 const logosFixture = require('./fixtures/logos.json');

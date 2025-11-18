@@ -1,4 +1,4 @@
-FROM node:22-alpine
+FROM node:24-alpine
 
 ENV LOGOSAPI_PORT=8000
 ENV APPDIR=/usr/src/app
